@@ -21,6 +21,11 @@ class BadgesScreen extends React.Component {
         console.log(response)
         this.setState({loading:false,badges:response})
     }
+
+    handlePress = item =>{
+        this.props.navigation.navigate('BadgesDetails', {item})
+    }
+
     render(){
         const{badges,loading} = this.state
         return(
@@ -28,7 +33,11 @@ class BadgesScreen extends React.Component {
                 {loading ? (
                     <ActivityIndicator style={styles.loader} color="#0C77F2" size="large"/>
                 ) : null}
-                <FlatList style={styles.list} data={badges} renderItem={({item}) => <BadgesItem key={item._id} item={item}/>}/>
+                <FlatList 
+                    style={styles.list} 
+                    data={badges} 
+                    renderItem={({item}) => <BadgesItem key={item._id} item={item} onPress={()=>this.handlePress(item)}/>}
+                />
             </View>
         )
     }

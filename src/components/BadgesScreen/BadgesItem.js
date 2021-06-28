@@ -7,7 +7,7 @@ class BadgesItem extends React.Component{
         const {item} = this.props
         return(
             <View style={styles.container}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={this.props.onPress}>
                     <View style={styles.row}>
                         <Image style={styles.profile} source={{uri:`${item.profile_pic}`}}/>
                         <View style={styles.userData}>
@@ -16,6 +16,14 @@ class BadgesItem extends React.Component{
                         </View>
                     </View>
                 </TouchableOpacity>
+                <View style={styles.icons}>
+                    <Pressable>
+                        <Image style={styles.editIcon} source={require('../../assets/edit.png')}/>
+                    </Pressable>
+                    <Pressable>
+                        <Image style={styles.deleteIcon} source={require('../../assets/delete.png')}/>
+                    </Pressable>
+                </View>
             </View>
         )
     }
@@ -49,6 +57,25 @@ const styles = StyleSheet.create({
         fontWeight:'100',
         paddingLeft:20,
         color:Colors.white,
+    },
+    icons:{
+        flex:1,
+        alignItems:'center',
+        justifyContent:'flex-end',
+        flexDirection:'row',
+    },
+    editIcon:{
+        height:22,
+        width:22,
+        resizeMode:'cover',
+        justifyContent:'center',
+    },
+    deleteIcon:{
+        marginLeft:10,
+        height:22,
+        width:22,
+        resizeMode:'cover',
+        justifyContent:'center',
     }
 })
 
