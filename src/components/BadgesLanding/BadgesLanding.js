@@ -9,7 +9,7 @@ const imageBackground = {
 class BadgesLanding extends React.Component {
 
     handlePress = () => {
-      this.props.navigation.replace('Signup')
+      this.props.navigation.replace('Login')
     }
 
     render(){
@@ -19,10 +19,10 @@ class BadgesLanding extends React.Component {
                 <ImageBackground source={imageBackground} style={styles.image}>
                     <View style={styles.layerColor}>
                         <Text style={styles.title}>
-                            Wellcome {'\n'}to my {'\n'}App
+                            Welcome {'\n'}to my {'\n'}App
                         </Text>
                         <TouchableOpacity style={styles.button} onPress={this.handlePress}>
-                            <Text style={styles.buttonText}>Wellcome</Text>
+                            <Text style={styles.buttonText}>Start</Text>
                         </TouchableOpacity>
                     </View>
                 </ImageBackground>

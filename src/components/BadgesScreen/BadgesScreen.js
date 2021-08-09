@@ -4,6 +4,8 @@ import Colors from '../../res/Colors'
 import Http from '../../libs/http'
 import BadgesItem from './BadgesItem'
 import BadgesSearch from './BadgesSearch'
+import Loader from '../Generics/Loader'
+import Storage from '../../libs/storage'
 
 class BadgesScreen extends React.Component {
   state = {
@@ -73,6 +75,8 @@ class BadgesScreen extends React.Component {
           onPress: async () =>{
             this.setState({loading:true,badges:undefined})
             await Http.instance.remove(item._id)
+            let key = `favorite-${item._id}`
+            await Storage.instance.remove(key)
             this.fetchdata() 
           },
           style:'destructive',
@@ -93,9 +97,7 @@ class BadgesScreen extends React.Component {
     const { badges, loading } = this.state
     if(loading===true && !badges){
       return(
-        <View style={[styles.container, styles.horizontal]}>
-          <ActivityIndicator style={styles.loader} color="#0C77F2" size="large" />
-        </View>
+        <Loader/>
       )
     }
     return (
